@@ -1,0 +1,56 @@
+TASK 1 - STORAGE SOLUTION
+
+- MongoDB (Banco de dados não relacional)
+
+Exemplo de criação de coleções que podem servir de alimentação para o catálogo de produtos, ou seja, dados que o catálogo de produto necessita para que o cliente realize compras.
+
+mongo
+db.createCollection("clientes")
+
+{
+	"nome" : string,
+	"telefone" : string,
+	"email" : string,
+	"dados_entrega" : {
+		"endereco" : string
+		"numero" : number
+		"cidade" : string
+		"estado" : string
+		"CEP" : string
+	},
+	"metodo_pagamento" : {
+		"numero_cartao" : string
+		"nome" : string
+		"data_validade" : date
+	}
+}
+
+	PROS
+
+	- Coleções são flexíveis para criação de documentos que possuem propriedades diferentes, que é o caso de um catálogo de diferentes produtos.
+	- As querys para leitura de banco de dados não relacionais oferecem vantagens de complexidade e tempo. No caso de um catálogo de produtos, uma busca por proximidade é interassante para listar os produtos que possuem propriedades parecidas ou produtos que foram comprados recentementes por pessoas que visualizaram aquele produto.
+	- Escalabilidade
+	- Desempenho
+
+	CONTRAS
+
+	- Como os dados estão mais dispersos, é mais complicado fazer contagem de registros.
+	- Dependendo do modelo de escalabilidade, perde-se em integridade de entidade e referencial.
+
+
+Observação: Eu nunca trabalhei com banco de dados não relacionais, todo meu conhecimento foi adiquirido nos últimos dias por meio de cursos e vídeos da internet sobre MongoDB e discussões sobre banco de dados (SQL vs NoSQL).
+
+- Firebird (banco de dados relacional)
+
+Diagrama de entidades e relações descrito em sql_storage_solution.xml (desenvolvido em www.draw.io).
+
+	PROS
+
+	- Falicidade de cruzar informações de tabelas (joins) devido aos relacionamentos descritos. É possível organizar e recuperar dados a partir de diferentes tabelas, desde que tenham um relacionamento.
+	- Garantia de integridade dos dados.
+	- Bancos relacionais possuem mais tempo de utilização no mercado, então possuem documentação e suporte mais acessíveis e completos.
+
+	CONTRAS
+
+	- Não é ideal para um modelo de negócio com grande quantidade de dados e fluxo de infomrações, ou seja, dificuldade para a escalabilidade.
+	- Implementação de um sistema de gerenciamento de banco de dados relacional pode ser bastante caro e demorada em grandes organizações.
