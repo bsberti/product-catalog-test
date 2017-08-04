@@ -1,20 +1,7 @@
-# Case Study Tech
+# Case Study Tech (bsberti answer)
 
-- You don't have a lock in time to finish, but we know how long it takes to be
-  done, so use your good sense.
-- Your answers can be in English or Portuguese, whatever you prefer.
-- All non-human help is allowed. You can use the Internet and any site and
-  tools you want. If you have questions about the tasks please don't hesitate to
-  ask!
-- Visit the case study on [GitHub](https://github.com/dafiti/product-catalog-test)
-- Create a fork for this repository git@github.com:dafiti/product-catalog-test.git
-  and clone it.
-- Solve the tasks as described.
-- After you finished, please create a Pull Request for the master branch at
-  git@github.com:dafiti/product-catalog-test.git
-
-## Your tools
-- Editor/IDE
+## Tools
+- Editor/IDE (Sumblime text)
 - Git client
 
 ## The project
@@ -33,7 +20,8 @@ the Dafiti E-Commerce platform.
 
 *How to present your solution:* Show us what your database design: might be
  SQL files, JSON schemas, or a text file explaining your intents.
-
+ 
+ Answer: storageSolution.txt
 
 2. Write a filter and a validation for the input data of the WMS (service as
    described below, take care of the specification). You can use a language of
@@ -45,6 +33,8 @@ the Dafiti E-Commerce platform.
  (REMEMBER: WE NEED TO BE ABLE TO RUN THE CODE, SO PLEASE TELL US HOW, E.G.
  IN A SEPARATE MARKDOWN FILE - OR IF YOUR ARE CUTTING EDGE PROVIDE A DOCKER
  FILE WHICH WORKS OUT-OF-THE-BOX)
+ 
+ Answer: validation.js
 
 
 3. Describe or implement a solution to handle temporary and permanent failure
@@ -58,14 +48,9 @@ the Dafiti E-Commerce platform.
  save as mark down or text format - hand written letters can be hard to read :p )
  or create some fancy diagrams for your solution.
  In the end: we need to be able to understand what's going on.
+ 
+ Answer: failureMaintance.txt
 
-## Technical Details
-There are a couple of backend webservices involved. You don't need to care about
-how the data is requested (e.g. REST, Thrift or something else). For our purpose
-we will use a simple JSON file as input data to validate your implementation.
-Use [this file](wms_product_data.json) for example data.
-To avoid confusion we added [this diagram](product_catalog_test.png) showing the
-relations between the services.
 
 ### WMS webservice (warehouse management system)
 - async possible
