@@ -42,7 +42,7 @@ Observação: Eu nunca trabalhei com banco de dados não relacionais, todo meu c
 
 - Firebird (banco de dados relacional)
 
-Diagrama de entidades e relações descrito em sql_storage_solution.xml (desenvolvido em www.draw.io).
+Diagrama de entidades e relações descrito em sql_storage_diagram.xml (desenvolvido em www.draw.io).
 
 	PROS
 
