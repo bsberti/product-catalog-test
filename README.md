@@ -34,7 +34,7 @@ the Dafiti E-Commerce platform.
  IN A SEPARATE MARKDOWN FILE - OR IF YOUR ARE CUTTING EDGE PROVIDE A DOCKER
  FILE WHICH WORKS OUT-OF-THE-BOX)
  
- Answer: validation.js
+ Answer: index.html (script inside)
 
 
 3. Describe or implement a solution to handle temporary and permanent failure
