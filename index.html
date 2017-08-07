@@ -9,7 +9,11 @@
 
 <script>
 
-var obj = JSON.parse('[{ "sku": "BATMAN-123", "price": "122.99", "name": "Batmobile", "description": "Superhero Car", "size": ["V8", "V12", "V16"], "brand": "Bruce Wayne", "categories": ["Super Heroes", "Flying Cars", "Cars"], "product_image_url": "cdn.gfg.com.br/batmobile.jpg", "special_price": "11.22" }, {"sku": "SPD-99", "price": "1992.99", "name": "Spiderman Suit", "description": "Fancy suit for Spidermen", "size": ["34", "35"], "brand": "Peter Parker", "categories": ["Super Heroes", "Spiderman", "Clothes"], "product_image_url": "http://cdn.gfg.com.br/spider-suite.jpg" }, { "sku": "KRYPT-123", "price": "122.99", "name": "Kryptonite", "description": "Anti Superman material", "size": ["22", "23", "24"], "brand": "Lex Luthor", "categories": ["Super Heroes", "Superman", "Accessories"], "product_image_url": "http://cdn.gfg.com.br/kryptonite.jpg", "special_price": "0.99" }, { "sku": "BATMAN-001", "price": "12323.99", "name": "Batman Suit", "description": "Comfortable Suit for hunt evil criminals", "size": ["38", "39", "40", "41"], "brand": "Bruce Wayne", "categories": ["Super Heroes", "Clothes", "Batman"], "product_image_url": "batman-suite" }, { "sku": "SPD-334", "price": "1.99", "name": "Spidernet refill set", "description": "To refill your net capabilities", "size": "single", "brand": "Peter Parker", "categories": ["Super Heroes", "Spiderman", "Accessories"], "product_image_url": "http://cdn.gfg.com.br/spiderman/spidernet.jpg", "special_price": "1" }]')
+var obj = JSON.parse('[{ "sku": "BATMAN-123", "price": "122,99", "name": "Batmobile", "description": "Superhero Car", "size": ["V8", "V12", "V16"], "brand": "Bruce Wayne", "categories": ["Super Heroes", "Flying Cars", "Cars"], "product_image_url": "cdn.gfg.com.br/batmobile.jpg", "special_price": "11.22" }, {"sku": "SPD-99", "price": "1992.99", "name": "Spiderman Suit", "description": "Fancy suit for Spidermen", "size": ["34", "35"], "brand": "Peter Parker", "categories": ["Super Heroes", "Spiderman", "Clothes"], "product_image_url": "http://cdn.gfg.com.br/spider-suite.jpg" }, { "sku": "KRYPT-123", "price": "122.99", "name": "Kryptonite", "description": "Anti Superman material", "size": ["22", "23", "24"], "brand": "Lex Luthor", "categories": ["Super Heroes", "Superman", "Accessories"], "product_image_url": "http://cdn.gfg.com.br/kryptonite.jpg", "special_price": "0.99" }, { "sku": "BATMAN-001", "price": "12323.99", "name": "Batman Suit", "description": "Comfortable Suit for hunt evil criminals", "size": ["38", "39", "40", "41"], "brand": "Bruce Wayne", "categories": ["Super Heroes", "Clothes", "Batman"], "product_image_url": "batman-suite" }, { "sku": "SPD-334", "price": "1.99", "name": "Spidernet refill set", "description": "To refill your net capabilities", "size": "single", "brand": "Peter Parker", "categories": ["Super Heroes", "Spiderman", "Accessories"], "product_image_url": "http://cdn.gfg.com.br/spiderman/spidernet.jpg", "special_price": "1" }]')
+
+var validStringRegEx = /^[^\\\/&]*$/;
+var validDoubleRegEx = /^\d+.?\d*$/;
+var errorList = new Array();
 
 function isValidURL(str) {
 
@@ -22,77 +26,118 @@ function isValidURL(str) {
         '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locater
     if (!pattern.test(str)) {
-    	//alert("URL: " + str + " INVALID!");
         return false;
     } else {
         return true;
     }
 }
 
-var validStringRegEx = /^[^\\\/&]*$/;
-var errorList = new Array();
+function addToErrorList(productId, property) {
+	var message = "obj[" + productId + "]." + property + " INVALIDO";
 
-for (var i in obj) {
-	
-	var skuValid = obj[i].sku.match(validStringRegEx);
-
-	var priceValid = obj[i].price.match(/^\d+.?\d*$/);
-
-	var nameValid = obj[i].name.match(validStringRegEx);
-
-	var descriptionValid = obj[i].description.match(validStringRegEx);
-
-	var sizeValid = new Array(obj[i].size);
-	var sizeArray = new Array();
-	if (String(sizeValid).indexOf(",") == -1){
-		sizeValid = obj[i].size.match(validStringRegEx);
+	if (errorList[productId] == null) {
+		errorList.push(message)
 	} else {
-		for (var j in obj[i].size) {
-			sizeArray.push(obj[i].size[j]);
-		}
-	}
-
-	//alert("sizeArray.length: " + sizeArray.length + " sizeArray: " + sizeArray);
-
-	var brandValid = obj[i].brand.match(validStringRegEx);
-
-	var categoriesValid = new Array(obj[i].categories);
-	var categoriesArray = new Array();
-	if (String(categoriesValid).indexOf(",") != -1) {
-		for (var j in obj[i].categories) {
-			categoriesArray.push(obj[i].categories[j]);
-		}
-	}
-
-	//alert("categoriesArray.length: " + categoriesArray.length + " categoriesArray: " + categoriesArray);
-
-	if (obj[i].special_price != null)
-		var special_priceValid = obj[i].special_price.match(/^\d+.?\d*$/);
-
-	if (!skuValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].sku INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].sku INVALIDO";
-
-	if (!priceValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].price INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].price INVALIDO";
-
-	if (!nameValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].name INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].name INVALIDO";
-
-	if (!descriptionValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].description INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].description INVALIDO";
-
-	if (!brandValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].brand INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].brand INVALIDO";
-
-	if (!isValidURL(obj[i].product_image_url)) (errorList[i] == null) ? errorList.push("obj[" + i + "].product_image_url INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].product_image_url INVALIDO";
-
-	if (!(sizeValid || sizeArray.length > 0)) (errorList[i] == null) ? errorList.push("obj[" + i + "].size INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].size INVALIDO";
-
-	if (categoriesArray.length == 0) (errorList[i] == null) ? errorList.push("obj[" + i + "].categories INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].categories INVALIDO";
-
-	if (obj[i].special_price != null) {
-		if (!special_priceValid) (errorList[i] == null) ? errorList.push("obj[" + i + "].special_price INVALIDO") : errorList[i] = errorList[i] + " - obj[" + i + "].special_price INVALIDO";
+		errorList[productId] = errorList[productId] + " - " + message;
 	}
 }
 
+function checkSku(productId) {
+	var valid = obj[productId].sku.match(validStringRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "sku");
+}
+
+function checkPrice(productId) {
+	var valid = obj[productId].price.match(validDoubleRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "price");
+}
+
+function checkName(productId) {
+	var valid = obj[productId].name.match(validStringRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "name");
+}
+
+function checkDescription(productId) {
+	var valid = obj[productId].description.match(validStringRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "description");
+}
+
+function checkSize(productId) {
+	var valid = true;
+
+	if (typeof(obj[productId].size) == "string") {
+		valid = obj[productId].size.match(validStringRegEx);
+	} else {
+		for (var j in obj[productId].size) {
+			if (!obj[productId].size[j].match(validStringRegEx)) {
+				valid = false;
+				break;
+			}
+		}
+	}
+
+	if (!valid) 
+		addToErrorList(productId, "size");
+}
+
+function checkBrand(productId) {
+	var valid = obj[productId].brand.match(validStringRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "brand");
+}
+
+function checkCategories(productId) {
+	var valid = true;
+
+	for (var i in obj[productId].categories) {
+		if (!obj[productId].categories[i].match(validStringRegEx)) {
+			valid = false;
+			break;
+		}
+	}
+
+	if (!valid) 
+		addToErrorList(productId, "categories");
+}
+
+function checkProductImageUrl(productId) {
+	var valid = isValidURL(obj[productId].product_image_url);
+
+	if (!valid)
+		addToErrorList(productId, "product_image_url");
+}
+
+function checkSpecialPrice(productId) {
+
+	var valid = obj[productId].special_price == null || obj[productId].special_price.match(validDoubleRegEx);
+
+	if (!valid) 
+		addToErrorList(productId, "special_price");
+}
+
+
+for (var i in obj) {	
+	checkSku(i);
+	checkPrice(i);
+	checkName(i);
+	checkDescription(i);
+	checkSize(i);
+	checkBrand(i);
+	checkCategories(i);
+	checkProductImageUrl(i);
+	checkSpecialPrice(i);
+}
+
 document.getElementById("demo").innerHTML = (errorList.length != 0) ? " ERROS ENCONTRADOS: " + errorList : "JSON Válido";
-
-
 
 </script>
 
