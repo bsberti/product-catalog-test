@@ -1,2 +1,29 @@
-TASK 3
+TASK 3 - FAILURE SOLUTION
 
+Falha do WMS webservice
+
+	Uma falha no serviço que alimenta a página de catálogo de produtos impacta diretamente na experiência do usuário que está visualizando os produtos e é preciso tratar essa falha de modo a minimizar os problemas:
+
+	Falha temporária
+	- Mostrar para o cliente que não foi possível carregar a página de produtos devido à um problema interno e solicitar que ele tente carregar a página novamente mais tarde.
+
+	- Usar cache de dados para manter a página funcionando (o que pode resultar em dados desatualizados).
+
+	Falha permanente
+	- Para evitar a parada do serviço é preciso criar redundancias para as bases de dados e um sistema que gerencie a queda de serviços.
+
+Falha do Stock webservice
+	
+	Uma falha no serviço de estoque impacta diretamente na experiência do usário que quer finalizar a compra de um produto do catálogo de produtos.
+
+	Falha temporária
+	- Apesar do catálo estar dispoível, é preciso avisar o usuário que o procedimento de finalização de compra está temporariamente fora, visto que não é possível garantir peças no estoque.
+
+	- Usando a base em cache, é possível fazer com que a própria página de produtos armazene informações de estoque sobre os produtos e faça o gerenciamento, mas sem a consulta ao estoque uma compra pode ser realizada sem a conferência. Então o serviço precisa ser parado.
+
+Falha do CMS webservice
+
+	A queda Sistema de Gerenciamento de Conteúdo não impactam diretamente na experiência do usuário ao usar o catálogo do produto.
+
+	Falha temporária
+	- A falha temporária desse serviço atrasa a alimentação de conteúdo para a página. Mas manter as atualizações da página offline para que sejam executadas quando o serviço voltar podem ajudar.
