@@ -1,4 +1,4 @@
-# Case Study Tech (bsberti answer)
+# Case Study Tech (bsberti's answer)
 
 ## Tools
 - Editor/IDE (Sumblime text)
